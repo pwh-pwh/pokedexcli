@@ -1,6 +1,8 @@
 package config
 
-import "github.com/pwh-pwh/pokedexcli/internal/pokeapi"
+import (
+	"github.com/pwh-pwh/pokedexcli/internal/pokeapi"
+)
 
 type CliConfig struct {
 	PokeApiClient pokeapi.Client
