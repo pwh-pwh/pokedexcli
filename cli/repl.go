@@ -3,11 +3,12 @@ package cli
 import (
 	"bufio"
 	"fmt"
+	"github.com/pwh-pwh/pokedexcli/config"
 	"os"
 	"strings"
 )
 
-func StartRepl() {
+func StartRepl(config *config.CliConfig) {
 	scanner := bufio.NewScanner(os.Stdin)
 	for {
 		fmt.Print("pokedex > ")
@@ -19,7 +20,7 @@ func StartRepl() {
 		commandName := words[0]
 		command, exists := getCommands()[commandName]
 		if exists {
-			err := command.callback()
+			err := command.callback(config)
 			if err != nil {
 				fmt.Println(err)
 			}
@@ -39,7 +40,7 @@ func cleanInput(input string) []string {
 type cliCommand struct {
 	name        string
 	description string
-	callback    func() error
+	callback    func(cliConfig *config.CliConfig) error
 }
 
 func getCommands() map[string]cliCommand {
@@ -48,6 +49,16 @@ func getCommands() map[string]cliCommand {
 			name:        "help",
 			description: "Displays a help message",
 			callback:    helpCommand,
+		},
+		"map": {
+			name:        "map",
+			description: "List Some Location Areas",
+			callback:    mapCommand,
+		},
+		"mapb": {
+			name:        "mapb",
+			description: "List previous Location Areas",
+			callback:    mapCommandBack,
 		},
 		"exit": {
 			name:        "exit",
