@@ -12,6 +12,7 @@ func main() {
 		PokeApiClient: pokeapi.NewClient(time.Minute, time.Second),
 		PreviousUrl:   nil,
 		NextUrl:       nil,
+		CaughtPokemon: make(map[string]pokeapi.Pokemon),
 	}
 	cli.StartRepl(&config)
 }

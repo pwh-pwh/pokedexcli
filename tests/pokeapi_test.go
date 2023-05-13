@@ -5,13 +5,14 @@ import (
 	"github.com/pwh-pwh/pokedexcli/internal/pokeapi"
 	"log"
 	"testing"
+	"time"
 )
 
-func TestListLocationAreas(t *testing.T) {
-	client := pokeapi.NewClient()
-	areas, err := client.ListLocationAreas()
+func TestGetPokemon(t *testing.T) {
+	client := pokeapi.NewClient(time.Minute, time.Minute)
+	data, err := client.GetPokemon("bulbasaur")
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(areas)
+	fmt.Println(data)
 }

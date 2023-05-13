@@ -8,4 +8,5 @@ type CliConfig struct {
 	PokeApiClient pokeapi.Client
 	PreviousUrl   *string
 	NextUrl       *string
+	CaughtPokemon map[string]pokeapi.Pokemon
 }
