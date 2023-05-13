@@ -40,7 +40,7 @@ func (p *PokeCache) Get(key string) ([]byte, bool) {
 func (p *PokeCache) ReapLoop() {
 	ticker := time.NewTicker(p.internal)
 	delKey := make([]string, 0)
-	for ; ; _ = <-ticker.C {
+	for range ticker.C {
 		p.mutex.RLock()
 		now := time.Now()
 		for key, entry := range p.cache {

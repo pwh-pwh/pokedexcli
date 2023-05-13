@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-func exitCommand(config *config.CliConfig) error {
+func exitCommand(config *config.CliConfig, args ...string) error {
 	os.Exit(0)
 	return nil
 }

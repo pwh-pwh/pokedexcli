@@ -6,7 +6,7 @@ import (
 	"github.com/pwh-pwh/pokedexcli/config"
 )
 
-func mapCommand(config *config.CliConfig) error {
+func mapCommand(config *config.CliConfig, args ...string) error {
 	resp, err := config.PokeApiClient.ListLocationAreas(config.NextUrl)
 	if err != nil {
 		return err
@@ -20,7 +20,7 @@ func mapCommand(config *config.CliConfig) error {
 	return nil
 }
 
-func mapCommandBack(config *config.CliConfig) error {
+func mapCommandBack(config *config.CliConfig, _ ...string) error {
 	if config.PreviousUrl == nil {
 		return errors.New("you are in first page")
 	}
